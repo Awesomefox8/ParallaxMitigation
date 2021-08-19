@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParallaxMitigation", "ParallaxMitigation\ParallaxMitigation.csproj", "{DD3B1B52-A5AF-4F41-8281-4A83D2B41173}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenTabletDriver.Plugin", ".modules\OpenTabletDriver\OpenTabletDriver.Plugin\OpenTabletDriver.Plugin.csproj", "{055C45A6-BDA5-4946-8791-C825E133F4B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD3B1B52-A5AF-4F41-8281-4A83D2B41173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3B1B52-A5AF-4F41-8281-4A83D2B41173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3B1B52-A5AF-4F41-8281-4A83D2B41173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3B1B52-A5AF-4F41-8281-4A83D2B41173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{055C45A6-BDA5-4946-8791-C825E133F4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{055C45A6-BDA5-4946-8791-C825E133F4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{055C45A6-BDA5-4946-8791-C825E133F4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{055C45A6-BDA5-4946-8791-C825E133F4B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E871BC9D-AC9D-4530-B67D-9762B7C22F68}
+	EndGlobalSection
+EndGlobal
