@@ -9,31 +9,58 @@ namespace Parallaxfix
     [PluginName("Parallax Mitigation")]
     public class Parallaxfix : IPositionedPipelineElement<IDeviceReport>
     {
-        private float off;
         private float ang;
+        private float des;
+        private float ac;
+        private float mam;
+        public float prevposx;
 
 
-        [Property("Mitigation amount"), DefaultPropertyValue(0f), ToolTip
+
+        [Property("Mitigation amount"), DefaultPropertyValue(1f), ToolTip
         (
-            "Default: 0\n\n" +
-            "changes amount of parallax mitigation, dont go too high or it will just reverse the effect\n"
+            "sets the mitigation amount, for manual calibration\n"
         )]
         public float TiltOffset
         {
-            set => off = Math.Clamp(value, -10000f, 10000f);
-            get => off;
+            set => mam = Math.Clamp(value, 0f, 1000f);
+            get => mam;
         }
 
         [Property("angle clamping"), DefaultPropertyValue(60f), ToolTip
         (
             "Set effective angle, put lower value if output is jittery\n" +
-            "reccomended value is half your max tilt\n"
+            "recommended value is half your max tilt\n"
         )]
         public float Maxang
         {
             set => ang = Math.Clamp(value, 0f, 90f);
             get => ang;
         }
+
+        [Property("Accuracy"), DefaultPropertyValue(0.3), ToolTip
+        (
+            "Margin of error"
+        )]
+        public float Accu
+        {
+            set => ac = Math.Clamp(value, 0f, 1f);
+            get => ac;
+        }
+
+
+        [Property("Tightening amount"), DefaultPropertyValue(0.05), ToolTip
+        (
+            "amount of change per iteration"
+        )]
+        public float Tightam
+        {
+            set => des = Math.Clamp(value, 0f, 1f);
+            get => des;
+        }
+
+        [BooleanProperty("calibration","turn on callibration"), DefaultPropertyValue(false)]
+        public bool Calibration { set; get; }
 
 
         public event Action<IDeviceReport> Emit;
@@ -46,6 +73,15 @@ namespace Parallaxfix
 
             if (value is ITabletReport report && value is ITiltReport tilt)
             {
+
+                if (Calibration && report.Pressure >= 1)
+                {
+                    if (prevposx - report.Position.X > Accu || prevposx - report.Position.X < -Accu)
+                    mam += Tightam;
+                    Console.WriteLine(mam);
+                }
+                prevposx = report.Position.X;
+
                 var ClampedX = Math.Clamp(tilt.Tilt.X, -Maxang, Maxang);
                 var ClampedY = Math.Clamp(tilt.Tilt.Y, -Maxang, Maxang);
 
