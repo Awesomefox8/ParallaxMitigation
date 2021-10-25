@@ -3,6 +3,7 @@ using System.Numerics;
 using OpenTabletDriver.Plugin.Attributes;
 using OpenTabletDriver.Plugin.Output;
 using OpenTabletDriver.Plugin.Tablet;
+using OpenTabletDriver.Plugin;
 
 namespace Parallaxfix
 {
@@ -40,7 +41,7 @@ namespace Parallaxfix
 
         [Property("Accuracy"), DefaultPropertyValue(0.3), ToolTip
         (
-            "Margin of error"
+            "Acceptable margin of error"
         )]
         public float Accu
         {
@@ -77,8 +78,10 @@ namespace Parallaxfix
                 if (Calibration && report.Pressure >= 1)
                 {
                     if (prevposx - report.Position.X > Accu || prevposx - report.Position.X < -Accu)
-                    mam += Tightam;
-                    Console.WriteLine(mam);
+                    {
+                        mam += Tightam;
+                        OpenTabletDriver.Plugin.Log.Write("Plugin", $"Value: {mam}", LogLevel.Debug);
+                    }
                 }
                 prevposx = report.Position.X;
 
