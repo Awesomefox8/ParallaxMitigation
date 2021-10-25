@@ -11,8 +11,8 @@ Accuracy defines how close you want to be to no parallax, recommended is 0.3, it
 
 Tightening amount is the amount the Mitigation amount will increase per update, recommended is 0.05
 
-calibration, when you check the box, hold your pen on the surface of 
-the tablet, and slowly rock the pen left and right, keeping the tip in the same place. When you
-think that it is close enough to zero, take your pen off of the tablet, click into the console tab, change it to debug, 
-take the value that was repeated many times before the bottom few values, put this into "Mitigation amount"
+calibration: when you check the box, click into the console tab, change it to debug,hold your pen on the surface of 
+the tablet, and slowly rock the pen left and right, keeping the tip in the same place.
+  When you think that the cursor movement is close enough to zero, look at the last value in the console, take your pen off of the tablet, 
+put the number into "Mitigation amount"
 uncheck calibration, click save, and apply.
